@@ -59,7 +59,8 @@ export function SignInView() {
         data: data,
       });
       if (response.success) {
-        // handleSignIn();
+        window.sessionStorage.setItem('token', response.data);
+        handleSignIn();
       }
     } catch (error: any) {
       let errorMsg = '';
@@ -74,7 +75,7 @@ export function SignInView() {
   };
 
   const handleSignIn = useCallback(() => {
-    router.push('/');
+    router.push('/user');
   }, [router]);
 
   const renderForm = (
