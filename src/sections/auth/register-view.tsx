@@ -63,8 +63,12 @@ export function RegisterView() {
         handleSignIn();
       }
     } catch (error: any) {
+      let errorMsg = '';
+      for (const [key, value] of Object.entries(error.messages)) {
+        errorMsg += `${key}: ${value}\n`;
+      }
       setSubmitLoader(false);
-      setFlashMessage(JSON.stringify(error.messages) || 'Error from backend services');
+      setFlashMessage(errorMsg || 'Error from backend services');
       setSnackProps(true);
     }
   };
